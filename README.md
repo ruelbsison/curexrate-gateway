@@ -72,6 +72,8 @@ This is where the objects that represent connections to entities outside the app
 ## Software Detailed Design
 This subsection will describe the overall decomposition of the CurExRate gateway design model as well as the interactivity that happens between components.
 ### SubSystems
+![CurExRate:Request](images/request-sequence-diagram.png)
+![CurExRate:Result](images/result-sequence-diagram.png)
 ### Components
 There are three collaborating components that compose the entire system. Each component running as a microservice are the following.
 
@@ -123,7 +125,7 @@ Name | Description | Example |
 
 Successfull Response
 
-HTTP Status 202 (Accepted)
+HTTP Status 200 (OK)
 
 Response Body
 
