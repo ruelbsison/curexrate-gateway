@@ -1,5 +1,5 @@
 # Currency Exchange Rate Project (CurExRate Gateway)
-> Most data providers suffers from response latency issues for several reasons such as increase current load, time for the backend to processe the request, and relative geographic location of the caller and the backend. This system will address these latency issues using Asynchronouse Request/Response message enchange pattern.
+> Most data providers suffers from performance and service availability issues. This system will address these issues using Asynchronouse Request/Response and Queue-Based Load Leveling patterns.
 
 ## Table of Contents
 * [System Overview](#system-overview)
@@ -73,10 +73,12 @@ This is where the objects that represent connections to entities outside the app
 This subsection will describe the overall decomposition of the CurExRate gateway design model as well as the interactivity that happens between components.
 ### SubSystems
 ![CurExRate:Request](images/request-sequence-diagram.png)
+![CurExRate:Processor](images/processor-sequence-diagram.png)
 ![CurExRate:Result](images/result-sequence-diagram.png)
 ### Components
 There are three collaborating components that compose the entire system. Each component running as a microservice are the following.
 
+<!--
 The CurExRate Gateway provides access to the latest and historical currency exchange rates and supported currency symbols. The gateway consists of REST interface for application integration, intranet Web interface for monitoring and application control and service specific client processors for consuming third party API. The following are the major System Functional Components:
 
 * Develop an Asynchronous Request/Response REST services for the system's integration with other applications.
@@ -91,6 +93,7 @@ The following diagram outlines the high level major components of the CurExRate 
 - CurExRate Status Service
 - CurExRate Data Service
 
+-->
     
 ## External Interfaces
 ### Request Service Endpoint (http://localhost:18180/exchangeRate)
@@ -133,11 +136,11 @@ Error Responses
 
 HTTP Status 404 (Not Found)
 
-**[⬆ Back to Table Of Contents](#table-of-contents)**
-
 ## Motivation For Choosing The API
 - Fulfilment Of All Required Functionalities such as listings of available currencies symbols and querying latest and historial exchage rates.
 - Documentation with clear and useful examples written in such a way that we can get the gist of ​​how it works at a glance and thus see in which it is easier to apply such instructions to avoid wasting time and effort.
 - JSON Data Format has been leading the way in terms of data representation formats for APIs for quite some time. One of its benefits is that it can be easily read by humans and it is also easier to implement.
 - Examples and Libraries of code in the programming language that we are using or a library that “talks” with the API in the language in question must given by the provider.- Limits And Interactions- Support And Community forum offers by the provider must have a good reputation for solving problems in a timely and relevant manner.
 - A free service with a potential to grow rapidly must be designed and implemented with Scalability and High Availability. 
+
+**[⬆ Back to Table Of Contents](#table-of-contents)**
