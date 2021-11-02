@@ -1,5 +1,5 @@
 # Currency Exchange Rate Project (CurExRate Gateway)
-> Most data providers suffers from performance and service availability issues. This system will address these issues using Asynchronouse Request/Response and Queue-Based Load Leveling patterns.
+> Most data providers suffers from performance and service availability issues. This system will address these issues using Asynchronous Request/Response and Queue-Based Load Leveling patterns.
 
 ## Table of Contents
 * [System Overview](#system-overview)
@@ -120,7 +120,7 @@ Error Responses
 
 HTTP Status 404 (Not Found)
 
-### Response Service Endpoint (http://localhost:18180/exchangeRateResponse)
+### Response Service Endpoint (http://localhost:18280/exchangeRateResponse)
 Request GET Parameters
 Name | Description | Example |
 |---|--------|------|
