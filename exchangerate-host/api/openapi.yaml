@@ -1,0 +1,367 @@
+openapi: 3.0.0
+info:
+  title: exchangerate-host
+  version: "1.0"
+servers:
+- url: https://api.exchangerate.host
+paths:
+  /latest:
+    get:
+      description: Get the latest foreign exchange reference rates. Latest endpoint
+        will return exchange rate data updated on daily basis.
+      operationId: get-latest
+      parameters:
+      - description: Changing base currency. Enter the three-letter currency code
+          of your preferred base currency.
+        explode: true
+        in: query
+        name: base
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Enter a list of comma-separated currency codes to limit output
+          currencies.
+        explode: true
+        in: query
+        name: symbols
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The amount to be converted.
+        explode: true
+        in: query
+        name: amount
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: API comes with support for JSONP Callbacks. This feature enables
+          you to specify a function name, pass it into the API's callback GET parameter
+          and cause the API to return your requested API response wrapped inside that
+          function.
+        explode: true
+        in: query
+        name: callback
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Round numbers to decimal place.
+        explode: true
+        in: query
+        name: places
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If respone success, then you can format output to XML, CSV or
+          TSV.
+        explode: true
+        in: query
+        name: format
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ' You can switch source data between (default) forex, bank view
+          or crypto currencies.'
+        explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                example-1:
+                  value:
+                    motd:
+                      msg: string
+                      url: string
+                    success: true
+                    base: string
+                    date: string
+                    rates:
+                      symbol: 0
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: OK
+      summary: Your GET endpoint
+      tags: []
+      x-accepts: application/json
+  /{date}:
+    get:
+      description: Historical rates are available for most currencies all the way
+        back to the year of 1999. You can query the API for historical rates by appending
+        a date (format YYYY-MM-DD) to the base URL.
+      operationId: get-date
+      parameters:
+      - description: (format YYYY-MM-DD)
+        explode: false
+        in: path
+        name: date
+        required: true
+        schema:
+          example: 2020-04-04
+          format: date
+          pattern: YYYY-MM-DD
+          type: string
+        style: simple
+      - description: Changing base currency. Enter the three-letter currency code
+          of your preferred base currency.
+        explode: true
+        in: query
+        name: base
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Enter a list of comma-separated currency codes to limit output
+          currencies.
+        explode: true
+        in: query
+        name: symbols
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The amount to be converted.
+        explode: true
+        in: query
+        name: amount
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: API comes with support for JSONP Callbacks. This feature enables
+          you to specify a function name, pass it into the API's callback GET parameter
+          and cause the API to return your requested API response wrapped inside that
+          function.
+        explode: true
+        in: query
+        name: callback
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Round numbers to decimal place.
+        explode: true
+        in: query
+        name: places
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: If respone success, then you can format output to XML, CSV or
+          TSV.
+        explode: true
+        in: query
+        name: format
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ' You can switch source data between (default) forex, bank view
+          or crypto currencies.'
+        explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                example-1:
+                  value:
+                    motd:
+                      msg: string
+                      url: string
+                    success: true
+                    base: string
+                    date: string
+                    rates:
+                      symbol: 0
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: OK
+      summary: Your GET endpoint
+      tags: []
+      x-accepts: application/json
+  /symbols:
+    get:
+      description: API comes with a constantly updated endpoint returning all available
+        currencies. To access this list, make a request to the API's symbols endpoint.
+      operationId: get-symbols
+      parameters:
+      - description: API comes with support for JSONP Callbacks. This feature enables
+          you to specify a function name, pass it into the API's callback GET parameter
+          and cause the API to return your requested API response wrapped inside that
+          function.
+        explode: true
+        in: query
+        name: callback
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ' If respone success, then you can format output to XML, CSV
+          or TSV.'
+        explode: true
+        in: query
+        name: format
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                example-1:
+                  value:
+                    motd:
+                      msg: string
+                      url: string
+                    success: true
+                    symbols:
+                      description: string
+                      code: string
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+          description: OK
+      summary: Your GET endpoint
+      tags: []
+      x-accepts: application/json
+components:
+  schemas:
+    Rate:
+      properties:
+        symbol:
+          type: number
+      title: Rate
+      type: object
+    inline_response_200_motd:
+      example:
+        msg: msg
+        url: url
+      properties:
+        msg:
+          minLength: 1
+          type: string
+        url:
+          minLength: 1
+          type: string
+      required:
+      - msg
+      - url
+      type: object
+    inline_response_200_rates:
+      example:
+        symbol: 0.8008281904610115
+      properties:
+        symbol:
+          type: number
+      required:
+      - symbol
+      type: object
+    inline_response_200:
+      example:
+        date: date
+        motd:
+          msg: msg
+          url: url
+        success: true
+        rates:
+          symbol: 0.8008281904610115
+        base: base
+      properties:
+        motd:
+          $ref: '#/components/schemas/inline_response_200_motd'
+        success:
+          type: boolean
+        base:
+          minLength: 1
+          type: string
+        date:
+          minLength: 1
+          type: string
+        rates:
+          $ref: '#/components/schemas/inline_response_200_rates'
+      required:
+      - base
+      - date
+      - motd
+      - rates
+      - success
+      type: object
+      x-examples:
+        example-1:
+          motd:
+            msg: If you or your company use this project or like what we doing, please
+              consider backing us so we can continue maintaining and evolving this
+              project.
+            url: https://exchangerate.host/#/donate
+          success: true
+          base: EUR
+          date: 2021-08-04
+          rates:
+            AED: 4.344807
+    inline_response_200_1_symbols:
+      example:
+        code: code
+        description: description
+      properties:
+        description:
+          type: string
+        code:
+          type: string
+      type: object
+    inline_response_200_1:
+      example:
+        motd:
+          msg: msg
+          url: url
+        success: true
+        symbols:
+        - code: code
+          description: description
+        - code: code
+          description: description
+      properties:
+        motd:
+          $ref: '#/components/schemas/inline_response_200_motd'
+        success:
+          type: boolean
+        symbols:
+          items:
+            $ref: '#/components/schemas/inline_response_200_1_symbols'
+          type: array
+      required:
+      - motd
+      - success
+      - symbols
+      type: object
+      x-examples:
+        example-1:
+          motd:
+            msg: If you or your company use this project or like what we doing, please
+              consider backing us so we can continue maintaining and evolving this
+              project.
+            url: https://exchangerate.host/#/donate
+          success: true
+          symbols:
+            AED:
+              description: United Arab Emirates Dirham
+              code: AED
+
