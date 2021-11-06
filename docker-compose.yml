@@ -16,7 +16,7 @@ services:
    dockerfile: curexrate-request/Dockerfile
   container_name: curexrate-req
   ports:
-   - "18180:8080"
+   - "18180:18180"
   depends_on:
    - mongodb
    - rabbitmq
@@ -29,7 +29,7 @@ services:
    dockerfile: curexrate-response/Dockerfile
   container_name: curexrate-res
   ports:
-   - "18280:8080"
+   - "18280:18280"
   depends_on:
    - mongodb
    - rabbitmq
@@ -53,7 +53,7 @@ services:
    dockerfile: curexrate-web-mon/Dockerfile
   container_name: curexrate-web-mon
   ports:
-   - "18480:8080"
+   - "8090:8080"
   depends_on:
    - mongodb
    - rabbitmq
@@ -66,7 +66,7 @@ services:
    dockerfile: curexrate-web-client/Dockerfile
   container_name: curexrate-web-client
   ports:
-   - "18680:8080"
+   - "80:8080"
   depends_on:
    - mongodb
    - rabbitmq
